@@ -49,6 +49,16 @@ public class add {
         }
     }
 
+    public void clear(){
+        //clear form
+
+        bName.setText("");
+        bID.setId(null);
+        bAuthor.setText("");
+        bCategory.setText("");
+
+    }
+
     public void test() throws IOException{
         handleaddbook();
     }   

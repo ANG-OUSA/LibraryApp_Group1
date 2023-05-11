@@ -25,7 +25,7 @@
             <TextField fx:id="bID" layoutX="27.0" layoutY="124.0" prefHeight="35.0" prefWidth="367.0" promptText="ID" />
          </children>
       </Pane>
-      <Button fx:id="clearBtn" layoutX="319.0" layoutY="553.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="166.0" style="-fx-background-color: #76b900;" text="clear" textFill="WHITE" />
+      <Button fx:id="clearBtn" layoutX="319.0" layoutY="553.0" mnemonicParsing="false" onAction="#clear" prefHeight="35.0" prefWidth="166.0" style="-fx-background-color: #76b900;" text="clear" textFill="WHITE" />
       <Button fx:id="addBtn" layoutX="713.0" layoutY="553.0" mnemonicParsing="false" onAction="#test" prefHeight="35.0" prefWidth="166.0" style="-fx-background-color: #76b900;" text="add" textFill="WHITE" />
    </children>
 </Pane>
