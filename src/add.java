@@ -6,9 +6,6 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.text.Bidi;
 
-import com.mysql.cj.x.protobuf.MysqlxExpr.Identifier;
-import com.mysql.cj.x.protobuf.MysqlxNotice.Warning.Level;
-
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
