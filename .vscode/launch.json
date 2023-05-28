@@ -8,16 +8,15 @@
             "type": "java",
             "name": "Current File",
             "request": "launch",
-            "mainClass": "${file}",
-            "vmArgs": "--module-path ${workspaceFolder}/lib/javafx-sdk-20/lib --add-modules javafx.controls,javafx.fxml"
+            "mainClass": "${file}"
         },
         {
             "type": "java",
             "name": "App",
             "request": "launch",
             "mainClass": "App",
-            "projectName": "LibraryApp_3ae05fae",
-            "vmArgs": "--module-path ${workspaceFolder}/lib/javafx-sdk-20/lib --add-modules javafx.controls,javafx.fxml"
+            "projectName": "LibraryApp_Group1_84a4a84b",
+            "vmArgs": "--module-path \"/Users/leen4k/LibraryApp_Group1/lib/javafx-sdk-20/lib\" --add-modules javafx.controls,javafx.fxml"
         }
     ]
 }
