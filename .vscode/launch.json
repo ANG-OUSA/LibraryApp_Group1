@@ -6,18 +6,33 @@
     "configurations": [
         {
             "type": "java",
-            "name": "Current File",
+            "name": "ListBook",
             "request": "launch",
-            "mainClass": "${file}",
-            "vmArgs": "--module-path ${workspaceFolder}/lib/javafx-sdk-20/lib --add-modules javafx.controls,javafx.fxml"
+            "mainClass": "ListBook",
+            "projectName": "LibraryApp_Group1_9405a6c8"
         },
         {
             "type": "java",
             "name": "App",
             "request": "launch",
             "mainClass": "App",
-            "projectName": "LibraryApp_Group1_e82587d6"
-            ,"vmArgs": "--module-path ${workspaceFolder}/lib/javafx-sdk-20/lib --add-modules javafx.controls,javafx.fxml",
+            "projectName": "LibraryApp_Group1_9405a6c8",
+            "vmArgs": "--module-path \"/Users/user/Documents/ipeeee/LibraryApp_Group1/lib/javafx-sdk-20/lib\" --add-modules javafx.controls,javafx.fxml"
+        },
+        {
+            "type": "java",
+            "name": "Current File",
+            "request": "launch",
+            "mainClass": "${file}",
+            "vmArgs": "--module-path \"/Users/user/Documents/ipeeee/LibraryApp_Group1/lib/javafx-sdk-20/lib\" --add-modules javafx.controls,javafx.fxml"
+        },
+        {
+            "type": "java",
+            "name": "App",
+            "request": "launch",
+            "mainClass": "App",
+            "projectName": "LibraryApp_Group1_e82587d6",
+            "vmArgs": "--module-path \"/Users/user/Documents/ipeeee/LibraryApp_Group1/lib/javafx-sdk-20/lib\" --add-modules javafx.controls,javafx.fxml"
         }
     ]
 }
