@@ -290,7 +290,11 @@ public class LoanBookController implements Initializable {
                     }
 
                 } catch (Exception e) {
+<<<<<<< HEAD
+                    // JOptionPane.showMessageDialog(null, e);
+=======
                     JOptionPane.showMessageDialog(null, e);
+>>>>>>> e7225659d262d6ebcbe194fb7bcee470c59cb6ca
                     System.out.println("error");
                 }
             } else {
