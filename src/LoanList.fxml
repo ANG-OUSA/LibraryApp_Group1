@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="LoanListController">
+   <children>
+      <Label layoutX="460.0" layoutY="44.0" text="Loan List">
+         <font>
+            <Font name="System Bold" size="48.0" />
+         </font>
+      </Label>
+      <TableView fx:id="table" layoutX="167.0" layoutY="171.0" prefHeight="398.0" prefWidth="836.0" style="-fx-background-color: fff;">
+        <columns>
+          <TableColumn fx:id="IDcolumn" prefWidth="57.0" text="ID" />
+          <TableColumn fx:id="studentNamecolumn" prefWidth="97.0" text="StudentName" />
+            <TableColumn fx:id="userNamecolumn" prefWidth="100.0" text="Username" />
+            <TableColumn fx:id="bIDcolumn" prefWidth="75.0" text="BID" />
+            <TableColumn fx:id="bookTitlecolumn" prefWidth="99.0" text="Book Title" />
+            <TableColumn fx:id="bookAuthorcolumn" prefWidth="95.0" text="Book Author" />
+            <TableColumn fx:id="bookcategorycolumn" prefWidth="145.0" text="Book category" />
+            <TableColumn fx:id="loanDatecolumn" prefWidth="167.0" text="Loan date" />
+        </columns>
+      </TableView>
+      <Button layoutX="943.0" layoutY="67.0" mnemonicParsing="false" onAction="#goToReturnedList" style="-fx-background-color: #76b900;" text="View Returned List" textFill="WHITE" />
+      <Button layoutX="77.0" layoutY="76.0" mnemonicParsing="false" onAction="#goBack" style="-fx-background-color: #76b900;" text="Go back" textFill="WHITE" />
+   </children>
+</Pane>
