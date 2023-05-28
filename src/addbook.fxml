@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="701.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="add">
+   <children>
+      <Label layoutX="512.0" layoutY="97.0" text="Add Books">
+         <font>
+            <Font size="37.0" />
+         </font>
+      </Label>
+      <Pane layoutX="390.0" layoutY="163.0" prefHeight="351.0" prefWidth="420.0" style="-fx-background-color: #76B900;">
+         <children>
+            <Label layoutX="27.0" layoutY="26.0" text="Name" />
+            <TextField fx:id="bName" layoutX="27.0" layoutY="49.0" prefHeight="35.0" prefWidth="367.0" promptText="Name" />
+            <Label layoutX="27.0" layoutY="176.0" text="Book author" />
+            <TextField fx:id="bAuthor" layoutX="27.0" layoutY="199.0" prefHeight="35.0" prefWidth="367.0" promptText="Author" />
+            <Label layoutX="27.0" layoutY="264.0" text="Book category" />
+            <TextField fx:id="bCategory" layoutX="27.0" layoutY="287.0" prefHeight="35.0" prefWidth="367.0" promptText="Category" />
+            <Label layoutX="27.0" layoutY="101.0" text="ID" />
+            <TextField fx:id="bID" layoutX="27.0" layoutY="124.0" prefHeight="35.0" prefWidth="367.0" promptText="ID" />
+         </children>
+      </Pane>
+      <Button fx:id="clearBtn" layoutX="319.0" layoutY="553.0" mnemonicParsing="false" onAction="#clear" prefHeight="35.0" prefWidth="166.0" style="-fx-background-color: #76b900;" text="clear" textFill="WHITE" />
+      <Button fx:id="addBtn" layoutX="713.0" layoutY="553.0" mnemonicParsing="false" onAction="#test" prefHeight="35.0" prefWidth="166.0" style="-fx-background-color: #76b900;" text="add" textFill="WHITE" />
+   </children>
+</Pane>
