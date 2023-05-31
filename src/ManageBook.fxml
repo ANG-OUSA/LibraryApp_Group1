@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ManageBookController">
+   <children>
+      <Label layoutX="386.0" layoutY="44.0" text="Manage Book">
+         <font>
+            <Font name="System Bold" size="48.0" />
+         </font>
+      </Label>
+      <Pane layoutX="75.0" layoutY="165.0" prefHeight="371.0" prefWidth="419.0" style="-fx-background-color: #76B900;">
+         <children>
+            <Label layoutX="18.0" layoutY="59.0" text="Book Title" textFill="WHITE" />
+            <Label layoutX="14.0" layoutY="138.0" text="Book Author" textFill="WHITE" />
+            <Label layoutX="16.0" layoutY="219.0" text="Book Category" textFill="WHITE" />
+            <TextField fx:id="txtBookTitle" layoutX="17.0" layoutY="86.0" prefHeight="35.0" prefWidth="383.0" promptText="Name" />
+            <TextField fx:id="txtBookQuantity" layoutX="18.0" layoutY="162.0" prefHeight="35.0" prefWidth="383.0" promptText="UserName" />
+            <TextField fx:id="txtBookCategory" layoutX="17.0" layoutY="242.0" prefHeight="35.0" prefWidth="383.0" promptText="Password" />
+            <Button fx:id="btnAdd" layoutX="18.0" layoutY="308.0" mnemonicParsing="false" onAction="#AddBook" prefHeight="48.0" prefWidth="122.0" style="-fx-background-color: #fff;" text="Add Books" textFill="#76b900" />
+            <Button fx:id="btnUpdate" layoutX="153.0" layoutY="308.0" mnemonicParsing="false" onAction="#updateBook" prefHeight="48.0" prefWidth="128.0" style="-fx-background-color: #fff;" text="Update Book Info" textFill="#76b900" />
+            <Button fx:id="btnDelete" layoutX="292.0" layoutY="308.0" mnemonicParsing="false" onAction="#deleteBook" prefHeight="48.0" prefWidth="108.0" style="-fx-background-color: #fff;" text="Delete Book" textFill="#76b900" />
+         </children>
+      </Pane>
+      <TableView fx:id="table" layoutX="560.0" layoutY="165.0" prefHeight="371.0" prefWidth="565.0" style="-fx-background-color: fff;">
+        <columns>
+          <TableColumn fx:id="IDcolumn" prefWidth="75.0" text="BID" />
+          <TableColumn fx:id="bookNamecolumn" prefWidth="104.0" text="Book Title" />
+            <TableColumn fx:id="quantitycolumn" prefWidth="107.0" text="Book Author" />
+            <TableColumn fx:id="categorycolumn" prefWidth="109.0" text="Category" />
+            <TableColumn fx:id="datecolumn" prefWidth="169.0" text="Date Added" />
+        </columns>
+      </TableView>
+      <Button layoutX="67.0" layoutY="66.0" mnemonicParsing="false" onAction="#goBack" style="-fx-background-color: #76b900;" text="Go back" textFill="WHITE" />
+      <ImageView fitHeight="84.0" fitWidth="72.0" layoutX="714.0" layoutY="43.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@assets/images/2232688.png" />
+         </image>
+      </ImageView>
+   </children>
+</Pane>
