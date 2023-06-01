@@ -9,5 +9,4 @@ public class User {
         public String address;
         public String password;
 
-
 }
