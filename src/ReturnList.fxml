@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ReturnListController">
+   <children>
+      <Label layoutX="417.0" layoutY="54.0" text="Returned List">
+         <font>
+            <Font name="System Bold" size="48.0" />
+         </font>
+      </Label>
+      <TableView fx:id="table" layoutX="182.0" layoutY="195.0" prefHeight="398.0" prefWidth="836.0" style="-fx-background-color: fff;">
+        <columns>
+          <TableColumn fx:id="IDcolumn" prefWidth="57.0" text="ID" />
+          <TableColumn fx:id="studentNamecolumn" prefWidth="141.0" text="StudentName" />
+            <TableColumn fx:id="userNamecolumn" prefWidth="204.0" text="Username" />
+            <TableColumn fx:id="bIDcolumn" prefWidth="61.0" text="BID" />
+            <TableColumn fx:id="bookTitlecolumn" prefWidth="189.0" text="Book Title" />
+            <TableColumn fx:id="returnDatecolumn" prefWidth="183.0" text="Return Date" />
+        </columns>
+      </TableView>
+      <Button layoutX="960.0" layoutY="77.0" mnemonicParsing="false" onAction="#goToLoanList" style="-fx-background-color: #76b900;" text="View Loan List" textFill="WHITE" />
+      <Button layoutX="77.0" layoutY="76.0" mnemonicParsing="false" onAction="#goBack" style="-fx-background-color: #76b900;" text="Go back" textFill="WHITE" />
+   </children>
+</Pane>
