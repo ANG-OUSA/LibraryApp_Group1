@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ManageAdminController">
+   <children>
+      <Label layoutX="386.0" layoutY="44.0" text="Manage Admin">
+         <font>
+            <Font name="System Bold" size="48.0" />
+         </font>
+      </Label>
+      <Pane layoutX="75.0" layoutY="165.0" prefHeight="371.0" prefWidth="419.0" style="-fx-background-color: #76B900;">
+         <children>
+            <Label layoutX="18.0" layoutY="20.0" text="Name" textFill="WHITE" />
+            <Label layoutX="14.0" layoutY="89.0" text="Username" textFill="WHITE" />
+            <Label layoutX="16.0" layoutY="163.0" text="Password" textFill="WHITE" />
+            <TextField fx:id="txtName" layoutX="17.0" layoutY="40.0" prefHeight="35.0" prefWidth="383.0" promptText="Name" />
+            <TextField fx:id="txtUsername" layoutX="18.0" layoutY="113.0" prefHeight="35.0" prefWidth="383.0" promptText="UserName" />
+            <TextField fx:id="txtPassword" layoutX="17.0" layoutY="186.0" prefHeight="35.0" prefWidth="383.0" promptText="Password" />
+            <Button fx:id="btnAdd" layoutX="18.0" layoutY="308.0" mnemonicParsing="false" onAction="#AddAdmin" prefHeight="48.0" prefWidth="122.0" style="-fx-background-color: #fff;" text="Add Admin" textFill="#76b900" />
+            <Button fx:id="btnUpdate" layoutX="153.0" layoutY="308.0" mnemonicParsing="false" onAction="#updateAdmin" prefHeight="48.0" prefWidth="128.0" style="-fx-background-color: #fff;" text="Update info" textFill="#76b900" />
+            <Button fx:id="btnDelete" layoutX="292.0" layoutY="308.0" mnemonicParsing="false" onAction="#deleteAdmin" prefHeight="48.0" prefWidth="108.0" style="-fx-background-color: #fff;" text="Delete" textFill="#76b900" />
+            <Label layoutX="18.0" layoutY="235.0" text="Phone" textFill="WHITE" />
+            <TextField fx:id="txtPhone" layoutX="19.0" layoutY="258.0" prefHeight="35.0" prefWidth="383.0" promptText="+855" />
+         </children>
+      </Pane>
+      <TableView fx:id="table" layoutX="560.0" layoutY="165.0" prefHeight="371.0" prefWidth="565.0" style="-fx-background-color: fff;">
+        <columns>
+          <TableColumn fx:id="IDcolumn" prefWidth="33.0" text="ID" />
+          <TableColumn fx:id="studentNamecolumn" prefWidth="134.0" text="Name" />
+            <TableColumn fx:id="userNamecolumn" prefWidth="127.0" text="Username" />
+            <TableColumn fx:id="passwordcolumn" prefWidth="146.0" text="Password" />
+            <TableColumn fx:id="phoneColumn" prefWidth="124.0" text="Phone" />
+        </columns>
+      </TableView>
+      <Button layoutX="67.0" layoutY="66.0" mnemonicParsing="false" onAction="#goBack" style="-fx-background-color: #76b900;" text="Go back" textFill="WHITE" />
+   </children>
+</Pane>
