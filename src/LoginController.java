@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 import javax.swing.JOptionPane;
@@ -22,7 +23,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
-public class LoginController {
+public class LoginController implements Initializable {
 
     private Stage stage;
     private Scene scene;
@@ -33,7 +34,18 @@ public class LoginController {
     PreparedStatement pst;
     ResultSet rs;
 
+    @FXML
+    private Label adminGreeting;
 
+    @FXML
+    void gotoAdmin(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("manageAdmin.fxml"));
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.centerOnScreen();
+        stage.show();
+    }
 
     public void switch1 (ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("main.fxml"));
@@ -128,7 +140,7 @@ public class LoginController {
     void btnLoginAsStudent(ActionEvent event) {
         String title = tfTitle.getText();
         String password = tfPassword.getText();
-        String id,name;
+        String id,name,username;
 
         if(title.equals("") && password.equals("")){
             description.setText("Your username or password is empty.");
@@ -137,7 +149,6 @@ public class LoginController {
             try{
                 Class.forName("com.mysql.jdbc.Driver");
                 con = DriverManager.getConnection("jdbc:mysql://localhost:/student","root","");      
-                // pst = con.prepareStatement("SELECT * FROM students WHERE username=? AND password=?");
                 pst = con.prepareStatement("SELECT * FROM students WHERE username=? AND password=?"); 
                 pst.setString(1, title);
                 pst.setString(2, password);
@@ -153,7 +164,9 @@ public class LoginController {
                     System.out.println(rs.getString("id"));
                     id = rs.getString("id");
                     name = rs.getString("name");
-                    JOptionPane.showMessageDialog(null, "login success welcome "+title);
+                    username = rs.getString("username");
+                    JOptionPane.showMessageDialog(null, "login success welcome "+username);
+                    
                     //redirect to main page
           
                     // Parent root = FXMLLoader.load(getClass().getResource("studentDashboard.fxml")); 
@@ -190,6 +203,11 @@ public class LoginController {
     @FXML
     private TextField tfTitle;
 
+    public void displayAdminUserName(String email) throws SQLException{
+        adminGreeting.setText("welcome back "+email);   
+    }
+
+
     @FXML
     void btnOkClicked(ActionEvent event) {
         // Stage mainWindow = (Stage) tfTitle.getScene().getWindow();
@@ -203,7 +221,7 @@ public class LoginController {
         }else{
             try{
                 Class.forName("com.mysql.jdbc.Driver");
-                con = DriverManager.getConnection("jdbc:mysql://localhost:/mystore","root","");      
+                con = DriverManager.getConnection("jdbc:mysql://localhost:/myadmin","root","");      
                 pst = con.prepareStatement("SELECT * FROM users WHERE email=? AND password=?");
                 pst.setString(1, title);
                 pst.setString(2, password);
@@ -211,8 +229,10 @@ public class LoginController {
 
                 if(rs.next()){
                     JOptionPane.showMessageDialog(null, "login success welcome "+title);
-                    description.setText(rs.getString("address"));
-                    //redirect to main page
+                    // description.setText(rs.getString("address"));
+                    // System.out.println(rs.getString("email"));
+    
+                    // redirect to main page
                     Parent root = FXMLLoader.load(getClass().getResource("main.fxml"));
                     stage = (Stage)((Node)event.getSource()).getScene().getWindow();
                     scene = new Scene(root);
@@ -227,10 +247,15 @@ public class LoginController {
                 }
 
             }catch(Exception e){
-                System.out.println("error");
+                System.out.println(e.getMessage());
             }
         }
 
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        
     }
 
 

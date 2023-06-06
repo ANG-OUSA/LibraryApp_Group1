@@ -11,7 +11,7 @@
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="LoginController">
    <children>
         <Button cancelButton="true" layoutX="1059.0" layoutY="27.0" mnemonicParsing="false" onAction="#switch2" style="-fx-background-color: #76B900;" text="Logout" textFill="WHITE" />
-      <Label layoutX="67.0" layoutY="22.0" text="Welcome to Admin dashboard">
+      <Label fx:id="adminGreeting" layoutX="67.0" layoutY="22.0" text="Welcome to Admin dashboard">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
@@ -57,12 +57,12 @@
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <Label layoutX="411.0" layoutY="472.0" text="View loan books">
+      <Label layoutX="411.0" layoutY="472.0" text="Manage loan books">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <Label layoutX="675.0" layoutY="472.0" text="View returned books">
+      <Label layoutX="675.0" layoutY="472.0" text="Manage returned books">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
@@ -72,5 +72,11 @@
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
+      <ImageView fitHeight="25.0" fitWidth="32.0" layoutX="918.0" layoutY="27.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@assets/images/3749883.png" />
+         </image>
+      </ImageView>
+      <Button cancelButton="true" layoutX="943.0" layoutY="27.0" mnemonicParsing="false" onAction="#gotoAdmin" prefHeight="25.0" prefWidth="99.0" style="-fx-background-color: #76B900;" text="Manage Admin" textFill="WHITE" />
    </children>
 </AnchorPane>

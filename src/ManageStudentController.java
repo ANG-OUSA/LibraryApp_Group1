@@ -44,6 +44,9 @@ public class ManageStudentController implements Initializable {
     private Button btnUpdate;
 
     @FXML
+    private TableColumn<Student, String> majorcolumn;
+
+    @FXML
     private TableColumn<Student, String> passwordcolumn;
 
     @FXML
@@ -62,6 +65,9 @@ public class ManageStudentController implements Initializable {
     private TextField txtUsername;
 
     @FXML
+    private TextField txtMajor;
+
+    @FXML
     private TableColumn<Student, String> userNamecolumn;
 
 
@@ -69,18 +75,22 @@ public class ManageStudentController implements Initializable {
     @FXML
     void AddStudent(ActionEvent event) {
      
-        String name, userName, password;
+        String name, userName, password, major;
         name = txtName.getText();
         userName= txtUsername.getText();
         password = txtPassword.getText();
+        major = txtMajor.getText();
         
         try{
 
            
-            pst = con.prepareStatement("insert into students(name,username,password)values(?,?,?)");
+            pst = con.prepareStatement("insert into students(name,username,password,major,noIssued,counter)values(?,?,?,?,?,?)");
             pst.setString(1,name);
             pst.setString(2,userName);
             pst.setString(3,password);
+            pst.setString(4, major);
+            pst.setString(5,null);
+            pst.setString(6,null);
             pst.executeUpdate();
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("test connection");
@@ -100,7 +110,7 @@ public class ManageStudentController implements Initializable {
         ObservableList<Student> students = FXCollections.observableArrayList();
      try
      {
-         pst = con.prepareStatement("select id,name,username,password from students");  
+         pst = con.prepareStatement("select id,name,username,password,major from students");  
          ResultSet rs = pst.executeQuery();
     {
       while (rs.next())
@@ -110,6 +120,8 @@ public class ManageStudentController implements Initializable {
           st.setName(rs.getString("name"));
           st.setUserName(rs.getString("username"));
           st.setPassword(rs.getString("password"));
+          st.setMajor(rs.getString("major"));
+
           students.add(st);
           System.out.println(rs.getString("username"));
      }
@@ -119,6 +131,7 @@ public class ManageStudentController implements Initializable {
               studentNamecolumn.setCellValueFactory(f -> f.getValue().nameProperty());
               userNamecolumn.setCellValueFactory(f -> f.getValue().userNameProperty());
               passwordcolumn.setCellValueFactory(f -> f.getValue().passwordProperty());
+              majorcolumn.setCellValueFactory(f -> f.getValue().majorProperty());
               
             
 
@@ -141,12 +154,14 @@ public class ManageStudentController implements Initializable {
          txtName.setText(table.getItems().get(myIndex).getName());
          txtUsername.setText(table.getItems().get(myIndex).getUserName());
          txtPassword.setText(table.getItems().get(myIndex).getPassword());       
+         txtMajor.setText(table.getItems().get(myIndex).getMajor());
                         
       }else{
         table.getSelectionModel().clearSelection();
         txtName.setText("");
         txtUsername.setText("");
         txtPassword.setText("");
+        txtMajor.setText("");
       }
    });
       return myRow;
@@ -188,20 +203,22 @@ public class ManageStudentController implements Initializable {
     //update students
     @FXML
     void updateStudent(ActionEvent event) {
-            String name,userName,password;
+            String name,userName,password,major;
         
            myIndex = table.getSelectionModel().getSelectedIndex();
            id = Integer.parseInt(String.valueOf(table.getItems().get(myIndex).getId()));         
            name = txtName.getText();
            userName = txtUsername.getText();
            password = txtPassword.getText();
+           major = txtMajor.getText();
        try
        {
-           pst = con.prepareStatement("update students set name = ?,username = ? ,password = ? where id = ? ");
+           pst = con.prepareStatement("update students set name = ?,username = ? ,password = ?, major = ? where id = ? ");
            pst.setString(1, name);
            pst.setString(2, userName);
            pst.setString(3, password);
-           pst.setInt(4, id);
+           pst.setString(4, major);
+           pst.setInt(5, id);
            pst.executeUpdate();
            Alert alert = new Alert(Alert.AlertType.INFORMATION);
            alert.setTitle("Student Registation");

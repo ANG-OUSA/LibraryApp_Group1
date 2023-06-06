@@ -9,6 +9,7 @@ public class Student
     private final StringProperty name;
     private final StringProperty userName;
     private final StringProperty  password;
+    private final StringProperty major;
      
     public Student()
     {
@@ -16,6 +17,7 @@ public class Student
         name = new SimpleStringProperty(this, "name");
         userName = new SimpleStringProperty(this, "userName");
         password = new SimpleStringProperty(this, "password");
+        major = new SimpleStringProperty(this, "major");
     }
 
     public StringProperty idProperty() { return id; }
@@ -33,4 +35,8 @@ public class Student
     public StringProperty passwordProperty() { return password; }
     public String getPassword() { return password.get(); }
     public void setPassword(String newPassword) { password.set(newPassword); }
+
+    public StringProperty majorProperty() { return major; }
+    public String getMajor() { return major.get(); }
+    public void setMajor(String newMajor) { major.set(newMajor); }
 }

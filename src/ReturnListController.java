@@ -19,6 +19,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.*;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
@@ -77,6 +78,36 @@ public class ReturnListController implements Initializable {
         stage.show();
     }
 
+    @FXML
+    void del(ActionEvent event) {
+        myIndex = table.getSelectionModel().getSelectedIndex();
+		 
+        id = Integer.parseInt(String.valueOf(table.getItems().get(myIndex).getbid()));
+
+                     
+
+        try 
+        {
+            pst = con.prepareStatement("delete from returned where bid = ? ");
+            pst.setInt(1, id);
+            pst.executeUpdate();
+            
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Return Book Deletion");
+
+		
+		alert.setHeaderText("Returned book");
+		alert.setContentText("Deleted!");
+
+		alert.showAndWait();
+                  table();
+        } 
+        catch (SQLException ex)
+        {
+            System.out.println("error");
+        }
+    }
+
     //table
     public void table(){
         Connect();
@@ -127,6 +158,7 @@ public class ReturnListController implements Initializable {
 
          myIndex =  table.getSelectionModel().getSelectedIndex();
          id = Integer.parseInt(String.valueOf(table.getItems().get(myIndex).getId()));
+        //  System.out.println(id +" meme");
         //  txtBookTitle.setText(table.getItems().get(myIndex).getBookTitle());
         //  txtBookQuantity.setText(table.getItems().get(myIndex).getQuantity());
         //  txtBookCategory.setText(table.getItems().get(myIndex).getCategory());       
@@ -156,9 +188,11 @@ public class ReturnListController implements Initializable {
         }
     }
 
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         Connect();
         table();
+
     }
 }

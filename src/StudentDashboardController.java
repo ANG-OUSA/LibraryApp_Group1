@@ -5,6 +5,8 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -19,6 +21,8 @@ import javafx.scene.Parent;
 import javafx.scene.*;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.TilePane;
+import javafx.scene.shape.Rectangle;
 import javafx.stage.Window;
 import javafx.stage.*;
 
@@ -65,9 +69,6 @@ public class StudentDashboardController implements Initializable {
         stage.show();
     }
 
-    // public void displayUserName(String userName, String id){
-    //     welcomeLabel.setText("welcome "+userName+ "id "+ id);
-    // }
 
     public void ConnectToStudent(){
         try{
@@ -91,16 +92,27 @@ public class StudentDashboardController implements Initializable {
         stNameTxt.setText(name);
         ConnectToStudent();
         String sql1 = "select *from issued where id = '" + id + "'";
+
         pst = con.prepareStatement(sql1);
         rs1 = pst.executeQuery();
-        if(rs1.next()){
-            System.out.println("yayyy "+rs1.getString("bid"));
-            searchBookCode.setText(rs1.getString("bid"));
-            btitleTxt.setText(rs1.getString("booktitle"));
-            bquantityTxt.setText(rs1.getString("quantity"));
-            bcategoryTxt.setText(rs1.getString("category"));
-
+        System.out.println(rs1);
+        ArrayList<String> bookID = new ArrayList<>();
+        ArrayList<String> title = new ArrayList<>();
+        ArrayList<String> quantity = new ArrayList<>();
+        ArrayList<String> category = new ArrayList<>();
+        
+        while(rs1.next()){
+            bookID.add(rs1.getString("bid"));
+            title.add(rs1.getString("booktitle"));
+            quantity.add(rs1.getString("quantity"));
+            category.add(rs1.getString("category"));
         }
+
+        searchBookCode.setText(bookID.toString());
+        btitleTxt.setText(title.toString());
+        bquantityTxt.setText(quantity.toString());
+        bcategoryTxt.setText(category.toString());
+
     }
 
     @Override

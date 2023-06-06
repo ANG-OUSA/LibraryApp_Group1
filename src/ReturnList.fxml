@@ -26,5 +26,6 @@
       </TableView>
       <Button layoutX="960.0" layoutY="77.0" mnemonicParsing="false" onAction="#goToLoanList" style="-fx-background-color: #76b900;" text="View Loan List" textFill="WHITE" />
       <Button layoutX="77.0" layoutY="76.0" mnemonicParsing="false" onAction="#goBack" style="-fx-background-color: #76b900;" text="Go back" textFill="WHITE" />
+      <Button layoutX="536.0" layoutY="618.0" mnemonicParsing="false" onAction="#del" prefHeight="44.0" prefWidth="129.0" style="-fx-background-color: #76b900;" text="Delete" textFill="WHITE" />
    </children>
 </Pane>

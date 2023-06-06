@@ -1,3 +1,4 @@
+import java.util.*;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
@@ -8,7 +9,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
+import java.text.SimpleDateFormat;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -22,9 +25,11 @@ import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javax.swing.JOptionPane;
 import javafx.fxml.Initializable;
+
 
 public class LoanBookController implements Initializable {
     private static final int MAX_BOOK_TO_ISSUE = 3;
@@ -72,6 +77,15 @@ public class LoanBookController implements Initializable {
     @FXML
     private TextField stUserNameTxt;
 
+    @FXML
+    private TextField majortxt;
+
+    @FXML
+    private Label bookstatus;
+
+    @FXML
+    private Label studentStatus;
+
     public void clear() {
 
         //clear book form
@@ -86,8 +100,11 @@ public class LoanBookController implements Initializable {
         searchStudentID.setText("");
         stNameTxt.setText("");
         stUserNameTxt.setText("");
-        stPasswordTxt.setText("");
+        majortxt.setText("");
+        // stPasswordTxt.setText("");
         issueDate.setValue(null);
+        bookstatus.setText("");
+        studentStatus.setText("");
 
     }
 
@@ -130,7 +147,7 @@ public class LoanBookController implements Initializable {
                 alert.setHeaderText("Loan Management");
                 alert.setContentText("Book Available");
                 alert.showAndWait();
-                // msgLabel.setText("Book Available");
+                bookstatus.setText("Book Available");
                 searchBookCode.setDisable(false);
                 btitleTxt.setText(rs.getString(2));
                 bcategoryTxt.setText(rs.getString(4));
@@ -138,17 +155,23 @@ public class LoanBookController implements Initializable {
                 rs.close();
                 pst.close();
             } else {
-                System.out.println("Book is not available");
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Loan Alert");
-                alert.setHeaderText("Loan Management");
-                alert.setContentText("Book is not Available");
-                alert.showAndWait();
+                bookstatus.setText("Book Not Available");
+                int red=100;  
+                int green=0;  
+                int blue=0;  
+                bookstatus.setTextFill(Color.rgb(red, green, blue,1));  
+                // System.out.println("Book is not available");
+                // Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                // alert.setTitle("Loan Alert");
+                // alert.setHeaderText("Loan Management");
+                // alert.setContentText("Book is not Available");
+                // alert.showAndWait();
                 // msgLabel.setText("Book Not Available");
                 //JOptionPane.showMessageDialog(null,"The book does not exist, check the book ID well");
             }
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
+            // JOptionPane.showMessageDialog(null, e);
+            System.out.println("error");
         } finally {
             try {
                 rs.close();
@@ -159,9 +182,19 @@ public class LoanBookController implements Initializable {
         }
     }
 
+    // Date Now  ### "To Date Picker"
+    public static final LocalDate NOW_LOCAL_DATE (){
+        // String date = new SimpleDateFormat("dd-MM-yyyy").format(Calendar.getInstance().getTime());
+        String date = new SimpleDateFormat("yyyy-MM-dd").format(Calendar.getInstance().getTime());
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate localDate = LocalDate.parse(date , formatter);
+        return localDate;
+    }
+
     //Seach students
     @FXML
     public void searchStudent(ActionEvent event) throws IOException {
+        issueDate.setValue(NOW_LOCAL_DATE());
         ResultSet rs = null;
         PreparedStatement pst = null;
         ConnectToStudent();
@@ -177,12 +210,17 @@ public class LoanBookController implements Initializable {
             if (rs.next()) {
                 stNameTxt.setText(rs.getString(2));
                 stUserNameTxt.setText(rs.getString(3));
-                stPasswordTxt.setText(rs.getString(4));
+                majortxt.setText(rs.getString(5));
+            
+                // stPasswordTxt.setText(rs.getString(4));
+                // studentStatus.setText("This student is available for borrowing books");
+                issueDate.requestFocus();
                 searchStudentID.setDisable(true);
                 rs.close();
                 pst.close();
             } else {
-                JOptionPane.showMessageDialog(null, "The student does not exist in the database");
+                // JOptionPane.showMessageDialog(null, "The student does not exist in the database");
+                studentStatus.setText("This Student does not Exist");
             }
 
         } catch (Exception e) {
@@ -233,7 +271,8 @@ public class LoanBookController implements Initializable {
                 JOptionPane.showMessageDialog(null, "You cannot be issued with another book" + "\nYou already have 3 books");
             }
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
+            // JOptionPane.showMessageDialog(null, e);
+            System.out.println("error");
         }
 
     }
@@ -251,7 +290,7 @@ public class LoanBookController implements Initializable {
         String sql1 = "select *from students where id = '" + reg + "'";
         String sql2 = "select *from books where id = '" + bId + "'";
         String sql4 = "select counter from students where id = '" + reg + "'";
-        String sql = "insert into issued (id,name,username,bid,booktitle,quantity,category,dateissued) value(?,?,?,?,?,?,?,?)";
+        String sql = "insert into issued (id,name,username,bid,booktitle,quantity,category) value(?,?,?,?,?,?,?)";
 
         try {
             ConnectToStudent();
@@ -278,11 +317,10 @@ public class LoanBookController implements Initializable {
                         pst.setString(5, btitleTxt.getText());
                         pst.setString(6, bquantityTxt.getText());
                         pst.setString(7, bcategoryTxt.getText());
-                        LocalDate localDate = issueDate.getValue();
-                        pst.setString(8, localDate.toString());
-
-
-
+                        // LocalDate localDate = issueDate.getValue();
+                        // pst.setString(8, localDate.toString());
+                        // LocalDate getDate = issueDate.getValue();
+                        // pst.setString(8, issueDate.getValue().toString());
                         pst.execute();
                         pst.close();
                         JOptionPane.showMessageDialog(null, "Book issued Successfully");
@@ -290,18 +328,14 @@ public class LoanBookController implements Initializable {
                     }
 
                 } catch (Exception e) {
-<<<<<<< HEAD
                     // JOptionPane.showMessageDialog(null, e);
-=======
-                    JOptionPane.showMessageDialog(null, e);
->>>>>>> e7225659d262d6ebcbe194fb7bcee470c59cb6ca
                     System.out.println("error");
                 }
             } else {
                 JOptionPane.showMessageDialog(null, "Either the book ID or the Student Registration number is incorrect");
             }
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "sasa");
+            JOptionPane.showMessageDialog(null, "error");
         }
         try {
             ConnectToBook();
